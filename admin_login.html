@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0505a7, #0cf3ffd8);
+            text-align: center;
+            padding: 50px;
+            color: white;
+            animation: fadeIn 1s ease-in;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .header img {
+            height: 60px;
+        }
+
+        .site-title {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .marquee {
+            background: black;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee div {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtext {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 12px;
+            font-size: 16px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            margin: 20px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .login-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .admin-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://play-lh.googleusercontent.com/TsNBFHfNVRjYO6ssNxZpsA_sbwUQYkGKhGsKYsCe4B8Tz5E0wlw-IfW7iUe0IOWSjmI" alt="MITAOE Logo">
+        <div class="site-title">FaceSpark</div>
+    </div>
+    
+    <div class="marquee">
+        <div>Effortless Tracking, One Face at a Time • Unlock Attendance with the Power of Your Face.</div>
+    </div>
+
+    <div class="container">
+        <h1>Admin Login</h1>
+        <p class="subtext">Secure access to manage the attendance system</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin Icon" class="admin-image">
+        
+        {% if error %}
+            <div class="error-message">
+                <h2>Invalid credentials. Try again.</h2>
+            </div>
+        {% endif %}
+
+        <div class="login-container">
+            <form method="post">
+                <p>Username: <input type="text" name="username" required></p>
+                <p>Password: <input type="password" name="password" required></p>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+        
+        <a href="{{ url_for('index') }}">
+            <button class="back-button">Back to Home</button>
+        </a>
+    </div>
+</body>
+</html>

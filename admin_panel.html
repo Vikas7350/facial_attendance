@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0606e7, #00f2fe);
+            text-align: center;
+            padding: 30px;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .header img {
+            height: 60px;
+        }
+
+        .site-title {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #007bff;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .delete-btn {
+            background: red;
+            color: white;
+        }
+
+        .list-container {
+            text-align: left;
+            display: inline-block;
+            width: 100%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://play-lh.googleusercontent.com/TsNBFHfNVRjYO6ssNxZpsA_sbwUQYkGKhGsKYsCe4B8Tz5E0wlw-IfW7iUe0IOWSjmI" alt="MITAOE Logo">
+        <div class="site-title">FaceSpark Admin Panel</div>
+    </div>
+
+    <div class="panel">
+        <h1>Admin Panel</h1>
+        <a href="{{ url_for('add_face') }}"><button>Add Face</button></a>
+        <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+    </div>
+
+    <div class="panel">
+        <h2>Existing Faces</h2>
+        {% if known_faces %}
+            <div class="list-container">
+                <ul>
+                {% for person in known_faces %}
+                    <li>
+                        <strong>Name:</strong> {{ person['name'] }} | <strong>Roll No:</strong> {{ person['roll_no'] }} | <strong>Division:</strong> {{ person['division'] }}
+                        <form action="{{ url_for('delete_face', name=person['name']) }}" method="post" style="display:inline;">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>No faces registered yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="panel">
+        <h2>Attendance by Subject</h2>
+        {% for subject, files in attendance_files.items() %}
+            <h3>{{ subject }}</h3>
+            {% if files %}
+                <ul>
+                {% for file in files %}
+                    <li>
+                        {{ file.split('/')[-1] }}
+                        <a href="{{ url_for('download', filename=file) }}"><button>Download</button></a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No attendance recorded for {{ subject }}.</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

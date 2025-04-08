@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Confirmation</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+   
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a127e 0%, #20c5fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            color: #28a745;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .confirmation-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .confirmation-details p {
+            margin: 0.5rem 0;
+            color: #34495e;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .confirmation-details i {
+            color: #3498db;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            flex: 1;
+        }
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #7f8c8d;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            flex: 1;
+        }
+        .btn-secondary:hover {
+            background-color: #6c757d;
+            transform: translateY(-2px);
+        }
+        .btn i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-check-circle me-2"></i>Attendance Recorded Successfully!</h1>
+        <div class="confirmation-details">
+            <p><i class="fas fa-user"></i>Name: {{ last_marked['name'] }}</p>
+            <p><i class="fas fa-book"></i>Subject: {{ last_marked['subject'] }}</p>
+            <p><i class="fas fa-calendar-alt"></i>Date: {{ last_marked['date'] }}</p>
+            <p><i class="fas fa-clock"></i>Time: {{ last_marked['time'] }}</p>
+        </div>
+        <div class="button-group">
+            <a href="{{ url_for('download', filename=last_marked['filename']) }}" class="btn btn-primary">
+                <i class="fas fa-download"></i>Download Attendance CSV
+            </a>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                <i class="fas fa-home"></i>Return to Home
+            </a>
+        </div>
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

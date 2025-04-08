@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Added</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #070769 0%, #25b8fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        h1 {
+            color: #28a745;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .message {
+            color: #34495e;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .person-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .person-details p {
+            margin: 0.5rem 0;
+            color: #34495e;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .person-details i {
+            color: #3498db;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        .btn-secondary {
+            background-color: #7f8c8d;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background-color: #6c757d;
+            transform: translateY(-2px);
+        }
+        .btn i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <i class="fas fa-check-circle success-icon"></i>
+        <h1>Face for {{ new_person['name'] }} Added Successfully!</h1>
+        <p class="message">The face has been successfully added to the system. You can now use it for attendance tracking.</p>
+        <div class="person-details">
+            <p><i class="fas fa-user"></i>Name: {{ new_person['name'] }}</p>
+            <p><i class="fas fa-id-badge"></i>Roll No: {{ new_person['roll_no'] }}</p>
+            <p><i class="fas fa-chalkboard"></i>Division: {{ new_person['division'] }}</p>
+        </div>
+        <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>Back to Admin Panel
+        </a>
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
