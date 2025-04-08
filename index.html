@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #070371, #0ab7def0);
+            text-align: center;
+            padding: 50px;
+            color: white;
+            animation: fadeIn 1s ease-in;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .header img {
+            height: 60px;
+        }
+
+        .site-title {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .marquee {
+            background: rgb(20, 1, 1);
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee div {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        form, .buttons {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        select, button {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        button {
+            cursor: pointer;
+            background: white;
+            color: #071119;
+            font-weight: bold;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #007bff;
+            color: white;
+        }
+
+        .contact-btn {
+            background: white;
+            color: #030d15;
+        }
+
+        .contact-btn:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        .guidelines {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align:left;
+            max-width: 600px;
+            margin-top: 30px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://play-lh.googleusercontent.com/TsNBFHfNVRjYO6ssNxZpsA_sbwUQYkGKhGsKYsCe4B8Tz5E0wlw-IfW7iUe0IOWSjmI" alt="MITAOE Logo">
+        <div class="site-title">FaceSpark</div>
+    </div>
+    
+    <div class="marquee">
+        <div>Effortless Tracking, One Face at a Time • Unlock Attendance with the Power of Your Face.</div>
+    </div>
+    
+    <h1>Facial Recognition Attendance System</h1>
+    
+    <form method="post" action="{{ url_for('select_subject') }}">
+        <label for="subject">Select Subject:</label>
+        <select name="subject" id="subject" required>
+            {% for subject in subjects %}
+                <option value="{{ subject }}">{{ subject }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Start Face Attendance</button>
+    </form>
+    
+    <div class="buttons">
+        <a href="{{ url_for('admin_login') }}"><button>Admin Login</button></a>
+        <button class="contact-btn" onclick="showContactDetails()">Contact</button>
+    </div>
+    
+    <div class="guidelines">
+        <h2>Guidelines for Face Recognition Attendance:</h2>
+        <ul>
+            <li>Ensure proper lighting for accurate face detection.</li>
+            <li>Face should be clearly visible without any obstructions.</li>
+            <li>Stand at an appropriate distance from the camera.</li>
+            <li>Maintain a neutral expression for better recognition.</li>
+            <li>Use high-quality images for initial face registration.</li>
+        </ul>
+    </div>
+    
+    <p>Created by <strong>Debug Thugs</strong></p>
+    
+    <script>
+        function showContactDetails() {
+            alert("Contact us at: support@debugthugs.com\nPhone: +91-8799956399");
+        }
+    </script>
+</body>
+</html>
+ 
